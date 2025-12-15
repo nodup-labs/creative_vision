@@ -43,7 +43,7 @@ export default function Home() {
 
       {/* Contact Section */}
       <ContactSection />
-      <div>salam</div>
+   
     </>
   );  
 }
