@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface TooltipData {
   cx: number;
@@ -21,7 +21,7 @@ interface SVGTooltipProps {
 const SVGTooltip: React.FC<SVGTooltipProps> = ({
   tooltips,
   svgPath,
-  tooltipClassName = '',
+  tooltipClassName = "",
   scale = 1,
 }) => {
   const [activeTooltip, setActiveTooltip] = useState<number>(0);
@@ -45,23 +45,23 @@ const SVGTooltip: React.FC<SVGTooltipProps> = ({
         const tooltip = tooltips[activeTooltip];
         const container = containerRef.current;
         if (!container) return;
-        
+
         // پیدا کردن SVG image درون container
-        const svgImg = container.querySelector('img');
+        const svgImg = container.querySelector("img");
         if (!svgImg) return;
-        
+
         const rect = svgImg.getBoundingClientRect();
-        
+
         // محاسبه موقعیت نسبی SVG
         const svgLeft = rect.left;
         const svgTop = rect.top;
         const svgWidth = rect.width;
         const svgHeight = rect.height;
-        
+
         // موقعیت دایره در pixels نسبت به SVG
         const circleX = (tooltip.cx / 884) * svgWidth;
         const circleY = (tooltip.cy / 472) * svgHeight;
-        
+
         // موقعیت دایره در صفحه (viewport relative)
         const x = svgLeft + circleX;
         const y = svgTop + circleY;
@@ -73,14 +73,14 @@ const SVGTooltip: React.FC<SVGTooltipProps> = ({
       };
 
       updatePosition();
-      
+
       // update position on scroll, resize, and scale change
-      window.addEventListener('scroll', updatePosition);
-      window.addEventListener('resize', updatePosition);
-      
+      window.addEventListener("scroll", updatePosition);
+      window.addEventListener("resize", updatePosition);
+
       return () => {
-        window.removeEventListener('scroll', updatePosition);
-        window.removeEventListener('resize', updatePosition);
+        window.removeEventListener("scroll", updatePosition);
+        window.removeEventListener("resize", updatePosition);
       };
     }
   }, [activeTooltip, tooltips, scale]);
@@ -89,15 +89,16 @@ const SVGTooltip: React.FC<SVGTooltipProps> = ({
     // توضیح: این تابع برای مطابقت با SVG onMouseMove استفاده می‌شود
   };
 
-
-
   return (
     <div
       ref={containerRef}
       className="relative w-full z-40 flex justify-center"
     >
       {/* SVG Container */}
-      <div className="relative" style={{ width: `${100 * scale}%`, maxWidth: '100%' }}>
+      <div
+        className="relative"
+        style={{ width: `${100 * scale}%`, maxWidth: "100%" }}
+      >
         <img src={svgPath} alt="Creative Vision" className="w-full h-auto" />
 
         {/* Interactive Circles */}
@@ -105,7 +106,7 @@ const SVGTooltip: React.FC<SVGTooltipProps> = ({
           className="absolute top-0 left-0 w-full h-full"
           viewBox="0 0 884 472"
           preserveAspectRatio="xMidYMid meet"
-          style={{ pointerEvents: 'none' }}
+          style={{ pointerEvents: "none" }}
           onMouseMove={handleMouseMove}
         >
           {tooltips.map((tooltip, index) => (
@@ -116,7 +117,7 @@ const SVGTooltip: React.FC<SVGTooltipProps> = ({
               r="35"
               fill="transparent"
               style={{
-                pointerEvents: 'none',
+                pointerEvents: "none",
               }}
             />
           ))}
@@ -131,12 +132,12 @@ const SVGTooltip: React.FC<SVGTooltipProps> = ({
           style={{
             left: `${tooltipPosition.x}px`,
             top: `${tooltipPosition.y - 120}px`,
-            transform: 'translate(-100%, -50%)',
+            transform: "translate(-100%, -50%)",
           }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <div className="flex items-start justify-between gap-3">
             <div className="text-right flex-1">
