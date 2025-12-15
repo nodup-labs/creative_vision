@@ -9,9 +9,13 @@ import ContactSection from "./_components/contactSection";
 export default function Home() {
   return (
     <>
-      <img
+      <Image
         src="/images/zamin.png"
-        className="absolute -z-1 left-1/2 -translate-x-1/2 -translate-y-48 pointer-events-none w-full h-"
+        alt="background"
+        className="absolute -z-10 left-1/2 -translate-x-1/2 -translate-y-48 pointer-events-none w-full"
+        width={1920}
+        height={1080}
+        priority
       />
       <div className="pt-23">
         <HeroSection />
@@ -43,7 +47,6 @@ export default function Home() {
 
       {/* Contact Section */}
       <ContactSection />
-   
     </>
-  );  
+  );
 }

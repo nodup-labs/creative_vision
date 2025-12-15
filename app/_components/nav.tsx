@@ -34,19 +34,28 @@ export default function Navbar() {
   return (
     <>
       {/* DESKTOP NAVBAR */}
-      <div className={`sticky z-50 top-0 left-0 right-0 flex justify-center  transition-all duration-500 ${
-        isScrolled ? "pt-0" : "pt-10"
-      }`}>
-        <nav 
+      <div
+        className={`sticky z-50 top-0 left-0 right-0 flex justify-center  transition-all duration-500 ${
+          isScrolled ? "pt-0" : "pt-10"
+        }`}
+      >
+        <nav
           dir="rtl"
           className={`bg-white shadow-md transition-all duration-500 ease-out ${
-            isScrolled ? "w-full rounded-none backdrop-blur-sm bg-white/80" : "w-9/12 rounded-xl"
+            isScrolled
+              ? "w-full rounded-none backdrop-blur-sm bg-white/80"
+              : "w-9/12 rounded-xl"
           }`}
         >
           <div className="container mx-auto flex flex-row items-center justify-between px-6 py-4">
             {/* LOGO */}
             <Link href="/" className="text-slate-900 font-bold text-lg">
-             <Image src="/images/logo.svg" alt="Logo" width={200} height={60} />
+              <Image
+                src="/images/logo.svg"
+                alt="Logo"
+                width={200}
+                height={60}
+              />
             </Link>
 
             {/* DESKTOP LINKS */}
