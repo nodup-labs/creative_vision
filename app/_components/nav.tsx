@@ -35,8 +35,8 @@ export default function Navbar() {
     <>
       {/* DESKTOP NAVBAR */}
       <div
-        className={`sticky z-50 top-0 left-0 right-0 flex justify-center  transition-all duration-500 ${
-          isScrolled ? "pt-0" : "pt-10"
+        className={`sticky z-50 top-0 left-0 right-0 flex justify-center transition-all duration-500 ${
+          isScrolled ? "pt-0" : "pt-4 lg:pt-10"
         }`}
       >
         <nav
@@ -44,17 +44,18 @@ export default function Navbar() {
           className={`bg-white shadow-md transition-all duration-500 ease-out ${
             isScrolled
               ? "w-full rounded-none backdrop-blur-sm bg-white/80"
-              : "w-9/12 rounded-xl"
+              : "w-full lg:w-9/12 rounded-xl"
           }`}
         >
-          <div className="container mx-auto flex flex-row items-center justify-between px-6 py-4">
+          <div className="container mx-auto flex flex-row items-center justify-between px-4 sm:px-6 py-3 lg:py-4">
             {/* LOGO */}
             <Link href="/" className="text-slate-900 font-bold text-lg">
               <Image
                 src="/images/logo.svg"
                 alt="Logo"
-                width={200}
-                height={60}
+                width={160}
+                height={48}
+                className="h-auto max-w-[140px] md:max-w-[200px]"
               />
             </Link>
 
@@ -120,7 +121,13 @@ export default function Navbar() {
         {/* Sidebar Header */}
         <div className="flex justify-between items-center mb-6">
           <Link href="/" className="text-slate-900 font-bold text-lg">
-            Logo
+            <Image
+              src="/images/logo.svg"
+              alt="Logo"
+              width={140}
+              height={42}
+              className="h-auto max-w-[120px]"
+            />
           </Link>
           <button
             onClick={() => setMobileOpen(false)}
