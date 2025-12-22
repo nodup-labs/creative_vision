@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { blogArticles } from "../../../lib/blogData";
 
@@ -34,12 +35,16 @@ export default async function BlogArticlePage({ params }: BlogPageProps) {
         </Link>
       </div>
 
-      <h1 className="text-3xl font-semibold text-white mb-6">{article.title}</h1>
+      <h1 className="text-3xl font-semibold text-white mb-6">
+        {article.title}
+      </h1>
 
       <div className="rounded-xl overflow-hidden border border-[#0f172a] mb-8">
-        <img
+        <Image
           src={article.image}
           alt={article.title}
+          width={1200}
+          height={600}
           className="w-full h-80 object-cover"
         />
       </div>
@@ -47,8 +52,8 @@ export default async function BlogArticlePage({ params }: BlogPageProps) {
       <div className="prose text-white prose-invert prose-headings:text-white prose-p:text-[#d9d9d9] max-w-none leading-7 text-[15px]">
         <p>
           در این مقاله به بررسی مسیر رشد کسب‌وکار دیجیتال می‌پردازیم و نکات عملی
-          و قابل اجرا را مرور می‌کنیم. از ایجاد استراتژی محتوا گرفته تا بهینه‌سازی
-          قیف فروش، هر بخش با مثال‌های واقعی توضیح داده شده است.
+          و قابل اجرا را مرور می‌کنیم. از ایجاد استراتژی محتوا گرفته تا
+          بهینه‌سازی قیف فروش، هر بخش با مثال‌های واقعی توضیح داده شده است.
         </p>
         <p>
           با دنبال کردن این راهنما می‌توانید برنامه‌ای مشخص برای سه ماه آینده‌ی

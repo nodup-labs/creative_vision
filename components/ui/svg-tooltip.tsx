@@ -26,6 +26,7 @@ const SVGTooltip: React.FC<SVGTooltipProps> = ({
 }) => {
   const [activeTooltip, setActiveTooltip] = useState<number>(0);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,6 +39,14 @@ const SVGTooltip: React.FC<SVGTooltipProps> = ({
 
     return () => clearInterval(interval);
   }, [tooltips.length]);
+
+  // detect small screens (mobile) and disable tooltip display
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -124,37 +133,39 @@ const SVGTooltip: React.FC<SVGTooltipProps> = ({
         </svg>
       </div>
 
-      {/* Tooltip */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeTooltip}
-          className={`fixed bg-slate-900 border border-slate-700 rounded-lg p-4 z-50 w-64 shadow-2xl ${tooltipClassName}`}
-          style={{
-            left: `${tooltipPosition.x}px`,
-            top: `${tooltipPosition.y - 120}px`,
-            transform: "translate(-100%, -50%)",
-          }}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-        >
-          <div className="flex items-start justify-between gap-3">
-            <div className="text-right flex-1">
-              <h3 className="font-semibold text-white text-lg">
-                {tooltips[activeTooltip].label}
-              </h3>
-              <p className="text-gray-300 text-base mt-1">
-                {tooltips[activeTooltip].description}
-              </p>
+      {/* Tooltip (hidden on small screens) */}
+      {!isMobile && (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTooltip}
+            className={`fixed bg-slate-900 border border-slate-700 rounded-lg p-4 z-50 w-64 shadow-2xl ${tooltipClassName}`}
+            style={{
+              left: `${tooltipPosition.x}px`,
+              top: `${tooltipPosition.y - 120}px`,
+              transform: "translate(-100%, -50%)",
+            }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div className="text-right flex-1">
+                <h3 className="font-semibold text-white text-lg">
+                  {tooltips[activeTooltip].label}
+                </h3>
+                <p className="text-gray-300 text-base mt-1">
+                  {tooltips[activeTooltip].description}
+                </p>
+              </div>
+              <div
+                className="w-3 h-3 rounded-full flex-shrink-0 mt-1"
+                style={{ backgroundColor: tooltips[activeTooltip].color }}
+              ></div>
             </div>
-            <div
-              className="w-3 h-3 rounded-full flex-shrink-0 mt-1"
-              style={{ backgroundColor: tooltips[activeTooltip].color }}
-            ></div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+          </motion.div>
+        </AnimatePresence>
+      )}
 
       <style>{`
         @keyframes fadeInUp {
