@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { BusinessCard } from '@/app/_components/businessCard';
+import { BusinessCard } from "@/app/_components/businessCard";
 
 interface Business {
   id: number;
@@ -8,36 +8,43 @@ interface Business {
   image: string;
   startDate: string;
   description: string;
+  url?: string;
 }
 
 const businessesData: Business[] = [
   {
     id: 1,
-    title: 'طراحی تجاری',
-    image: '/images/business-1.jpg',
-    startDate: '1402/01/15',
-    description: 'خدمات طراحی برند و هویت بصری برای کسب‌وکارهای کوچک و بزرگ',
+    title: "طراحی تجاری",
+    image: "/images/business-1.jpg",
+    startDate: "1402/01/15",
+    description: "خدمات طراحی برند و هویت بصری برای کسب‌وکارهای کوچک و بزرگ",
+    url: "https://www.google.com/",
   },
   {
     id: 2,
-    title: 'توسعه وب',
-    image: '/images/business-2.jpg',
-    startDate: '1402/03/22',
-    description: 'طراحی و توسعه وب‌سایت‌های مدرن و کاربرپسند با تکنولوژی‌های روز',
+    title: "توسعه وب",
+    image: "/images/business-2.jpg",
+    startDate: "1402/03/22",
+    description:
+      "طراحی و توسعه وب‌سایت‌های مدرن و کاربرپسند با تکنولوژی‌های روز",
+    url: "https://www.google.com/",
   },
   {
     id: 3,
-    title: 'مارکتینگ دیجیتال',
-    image: '/images/business-3.jpg',
-    startDate: '1402/06/10',
-    description: 'استراتژی‌های مارکتینگ دیجیتال برای افزایش دید رسانی و فروش آنلاین',
+    title: "مارکتینگ دیجیتال",
+    image: "/images/business-3.jpg",
+    startDate: "1402/06/10",
+    description:
+      "استراتژی‌های مارکتینگ دیجیتال برای افزایش دید رسانی و فروش آنلاین",
+    url: "https://www.google.com/",
   },
   {
     id: 4,
-    title: 'تولید محتوا',
-    image: '/images/business-4.jpg',
-    startDate: '1402/09/05',
-    description: 'ایجاد محتوای خلاقانه و جذاب برای شبکه‌های اجتماعی و وب‌سایت',
+    title: "تولید محتوا",
+    image: "/images/business-4.jpg",
+    startDate: "1402/09/05",
+    description: "ایجاد محتوای خلاقانه و جذاب برای شبکه‌های اجتماعی و وب‌سایت",
+    url: "https://www.google.com/",
   },
 ];
 
@@ -64,6 +71,7 @@ export default function BusinessesPage() {
               image={business.image}
               startDate={business.startDate}
               description={business.description}
+              url={business.url}
             />
           ))}
         </div>

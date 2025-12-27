@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 interface BusinessCardProps {
   title: string;
   image?: string;
+  url?: string;
   startDate: string;
   description: string;
 }
@@ -12,11 +13,15 @@ interface BusinessCardProps {
 export function BusinessCard({
   title,
   image,
+  url,
   startDate,
   description,
 }: BusinessCardProps) {
   return (
-    <div dir='rtl' className="bg-gray-800 rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 border border-gray-700">
+    <div
+      dir="rtl"
+      className="bg-gray-800 rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 border border-gray-700"
+    >
       {/* تصویر */}
       <div className="relative w-full h-64 bg-gray-700">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 flex items-center justify-center">
@@ -24,13 +29,6 @@ export function BusinessCard({
             {title}
           </span>
         </div>
-        {/* برای استفاده از تصاویر واقعی، این خط را فعال کنید */}
-        {/* <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-cover"
-        /> */}
       </div>
 
       {/* محتوای کارت */}
@@ -48,7 +46,15 @@ export function BusinessCard({
         </div>
 
         {/* دکمه بیشتر بدانید */}
-        <Button className="w-full">بیشتر بدانید</Button>
+        {url ? (
+          <Button asChild className="w-full">
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              بیشتر بدانید
+            </a>
+          </Button>
+        ) : (
+          <Button className="w-full">بیشتر بدانید</Button>
+        )}
       </div>
     </div>
   );
